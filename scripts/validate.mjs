@@ -21,10 +21,11 @@ check(!!fmMatch, 'frontmatter 存在');
 const fm = fmMatch ? fmMatch[1] : '';
 check(/^name:\s*dev-copilot$/m.test(fm), 'frontmatter name = dev-copilot');
 const fmVersion = (fm.match(/^version:\s*(.+)$/m) || [])[1]?.trim();
-check(fmVersion === '2.0.3', `frontmatter version = 2.0.3（实际 ${fmVersion || '缺失'}）`);
+const sourceVersion = (read(path.join(root, 'src', 'frontmatter.yaml')).match(/^version:\s*(.+)$/m) || [])[1]?.trim();
+check(fmVersion === sourceVersion, `frontmatter version = ${sourceVersion}（实际 ${fmVersion || '缺失'}）`);
 check(fm.trim() === read(path.join(root, 'src', 'frontmatter.yaml')).trim(), 'frontmatter 与 src/frontmatter.yaml 一致');
 
-const required = ['提效优先原则', '分级读取表', '负向触发规则', '统一门禁判定表', '初始化扫描流程', '复杂需求协作分流', '原型产物规则', '模块归属判断', '自动记忆策略', '记忆体量控制', '子技能调度规则', '调度去重', '验证输出摘要', '声明式'];
+const required = ['提效优先原则', '分级读取表', '负向触发规则', '统一门禁判定表', '初始化扫描流程', '复杂需求协作分流', '原型产物规则', '模块归属判断', '自动记忆策略', '记忆体量控制', '子技能调度规则', '调度去重', '验证输出摘要', '声明式', 'Task Episode', 'configured', 'observed', 'verified', 'failed', 'unobserved', 'deferred', '只读审计', '重复问题发现', '反馈路由'];
 for (const s of required) check(skill.includes(s), `必备规则：${s}`);
 
 check((skill.match(/^version:/gm) || []).length === 1, 'version 只在 frontmatter 出现');
