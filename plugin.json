@@ -1,0 +1,21 @@
+{
+  "name": "dev-copilot",
+  "displayName": "项目研发助手",
+  "version": "2.0.3",
+  "description": "Global project development orchestration skill: natural-language triggered requirements, prototyping, front/back-end development, debugging, code review, verification and project-level memory.",
+  "descriptionZh": "全局项目研发调度技能：自然语言触发需求设计、原型设计、前后端开发、Bug 排查、代码评审、测试验证与项目级记忆，内置全部依赖子技能。",
+  "author": {
+    "name": "OuZeBo"
+  },
+  "keywords": [
+    "qoder-plugin",
+    "skill",
+    "dev-copilot"
+  ],
+  "category": "developer-tools",
+  "tags": [
+    "skill"
+  ],
+  "skills": "./skills/",
+  "defaultEnabled": true
+}

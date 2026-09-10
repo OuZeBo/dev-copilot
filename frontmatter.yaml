@@ -1,0 +1,23 @@
+name: dev-copilot
+description: 全局项目研发调度技能。用于自然语言触发需求设计、原型设计、前后端开发、Bug 排查、代码评审、测试验证、/init 项目初始化扫描、项目级记忆读写、模块归属判断和安全的项目规则提取；按任务风险分级读取记忆，统一门禁判定追问与确认节奏；纯咨询解释类问答不进入研发工作流；默认自动保存有效项目记忆，仅在覆盖核心业务记忆、修改静态配置、改变模块职责边界、批量整理记忆或修改 git 相关设置时请求确认。
+version: 2.0.3
+displayName: 项目研发助手
+persistentMemory: true
+multiProjectMemory: false
+projectScopedMemory: true
+autoMemoryEnabled: true
+initializationRequired: true
+dependencies:
+- using-superpowers
+- brainstorming
+- domain-modeling
+- writing-plans
+- executing-plans
+- test-driven-development
+- systematic-debugging
+- requesting-code-review
+- using-git-worktrees
+- verification-before-completion
+- finishing-a-development-branch
+- grill-with-docs
+- grill-me
