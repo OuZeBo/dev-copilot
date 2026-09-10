@@ -1,0 +1,7 @@
+interface:
+  display_name: "项目研发助手"
+  short_description: "跨项目研发调度、初始化、自然语言触发与项目级记忆助手"
+  default_prompt: "使用 $dev-copilot 处理项目研发、初始化、记忆和验证工作。"
+
+policy:
+  allow_implicit_invocation: true
