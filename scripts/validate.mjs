@@ -25,7 +25,7 @@ const sourceVersion = (read(path.join(root, 'src', 'frontmatter.yaml')).match(/^
 check(fmVersion === sourceVersion, `frontmatter version = ${sourceVersion}（实际 ${fmVersion || '缺失'}）`);
 check(fm.trim() === read(path.join(root, 'src', 'frontmatter.yaml')).trim(), 'frontmatter 与 src/frontmatter.yaml 一致');
 
-const required = ['提效优先原则', '分级读取表', '负向触发规则', '统一门禁判定表', '初始化扫描流程', '复杂需求协作分流', '原型产物规则', '模块归属判断', '自动记忆策略', '记忆体量控制', '子技能调度规则', '调度去重', '验证输出摘要', '声明式', 'Task Episode', 'configured', 'observed', 'verified', 'failed', 'unobserved', 'deferred', '只读审计', '重复问题发现', '反馈路由'];
+const required = ['提效优先原则', '分级读取表', '负向触发规则', '统一门禁判定表', '初始化扫描流程', '复杂需求协作分流', '原型产物规则', '模块归属判断', '自动记忆策略', '记忆体量控制', '子技能调度规则', '调度去重', '验证输出摘要', '声明式', 'Task Episode', 'configured', 'observed', 'verified', 'failed', 'unobserved', 'deferred', '只读审计', '重复问题发现', '反馈路由', 'Spec-backed Development Mode', 'spec.md', 'plan.md', 'tasks.md', 'verification.md', 'convergence.md', '规格收敛检查', '阶段产物与长期记忆分流'];
 for (const s of required) check(skill.includes(s), `必备规则：${s}`);
 
 check((skill.match(/^version:/gm) || []).length === 1, 'version 只在 frontmatter 出现');
@@ -59,12 +59,26 @@ for (let i = 0; i < lines.length; i += 1) {
 check(numberingOk, `有序列表编号连续${numberingOk ? '' : `（${numberingMsg}）`}`);
 
 const deps = [...fm.matchAll(/^-\s*(\S+)$/gm)].map((m) => m[1]);
-check(deps.length === 13, `dependencies 共 13 项（实际 ${deps.length}）`);
+const expectedDeps = [
+  'using-superpowers',
+  'writing-plans',
+  'executing-plans',
+  'test-driven-development',
+  'systematic-debugging',
+  'using-git-worktrees',
+  'verification-before-completion',
+  'finishing-a-development-branch',
+];
+check(deps.length === expectedDeps.length, `dependencies 共 ${expectedDeps.length} 项（实际 ${deps.length}）`);
+check(expectedDeps.every((dep) => deps.includes(dep)), 'dependencies 仅保留强流程依赖');
 for (const dep of deps) {
   check(fs.existsSync(path.join(root, 'skills', dep, 'SKILL.md')), `依赖副本存在：${dep}`);
 }
-check(!deps.includes('grilling'), 'dependencies 未重复声明 grilling');
-check(fs.existsSync(path.join(root, 'skills', 'grilling', 'SKILL.md')), '传递依赖 grilling 副本存在');
+const methodOnly = ['brainstorming', 'domain-modeling', 'requesting-code-review', 'grill-with-docs', 'grill-me', 'grilling'];
+check(methodOnly.every((dep) => !deps.includes(dep)), '方法论型技能未作为 dependencies 声明');
+check(skill.includes('.codex-project/specs/<日期-主题>/'), 'Spec-backed 阶段产物目录已定义');
+check(skill.includes('不得把所有任务都强制规格化'), '低风险任务不强制规格化');
+check(skill.includes('不新增 Spec Kit CLI') || read(path.join(root, 'src', 'template-only', '90-acceptance.md')).includes('不新增 Spec Kit CLI'), '不新增 Spec Kit 外部依赖约束已声明');
 
 const yamlPath = path.join(root, 'skills', 'dev-copilot', 'agents', 'openai.yaml');
 const yaml = fs.existsSync(yamlPath) ? read(yamlPath) : '';

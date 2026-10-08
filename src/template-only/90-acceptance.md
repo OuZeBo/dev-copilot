@@ -20,6 +20,7 @@
 12. 必须包含"负向触发规则"或等价规则。
 13. 必须包含"验证输出摘要"或等价规则。
 14. 必须包含证据状态、Task Episode、完成前自检、只读审计、重复问题发现和反馈路由规则。
+15. 必须包含 Spec-backed Development Mode、`specs/` 阶段产物目录、阶段产物与长期记忆分流、convergence 检查或等价规则。
 
 ### 2. 元数据与规则唯一性验收
 
@@ -30,8 +31,8 @@
 ### 3. 依赖完整性验收
 
 1. frontmatter `dependencies` 中每一项必须在 `skills/` 目录存在对应技能副本。
-2. `grilling` 作为 `grill-me` 的传递依赖，必须在 `skills/` 中存在，但不在 dependencies 中声明。
-3. 部署到目标环境后，目标技能目录必须包含 dependencies 全部条目及 `grilling`。
+2. 方法论型能力应内化到主规则，不得继续把 `brainstorming`、`domain-modeling`、`requesting-code-review`、`grill-with-docs`、`grill-me` 或 `grilling` 声明为 dependencies。
+3. 部署到目标环境时，只要求同步 `dev-copilot` 与 dependencies 中声明的技能。
 
 ### 4. 项目中立验收
 
@@ -62,3 +63,11 @@
 3. 审计模式默认只读，只在用户明确要求时触发，低风险任务不启动完整审计。
 4. 反馈路由能区分全局规则、项目配置、业务记忆、迭代记忆和模块地图。
 5. V2.1 不新增 Better Harness 依赖、插件、CLI、会话采集器或外部上传流程。
+
+### 8. V2.2.1 专项验收
+
+1. 中高风险任务可升级为 Spec-backed Development Mode，但低风险任务不得被强制规格化。
+2. 阶段产物默认写入 `.codex-project/specs/<日期-主题>/`，且至少定义 `spec.md`、`plan.md`、`tasks.md`、`verification.md`、`convergence.md` 的用途。
+3. 完成前验证必须包含 Spec-backed 任务的 convergence 检查要求。
+4. 阶段产物不得直接等同长期记忆；沉淀到 `memory/` 前必须经过确认、验证和复用价值筛选。
+5. 本版本只吸收 Spec Kit 的阶段产物和规格收敛思想，不新增 Spec Kit CLI、插件、外部服务或强制全任务 SDD 流程。

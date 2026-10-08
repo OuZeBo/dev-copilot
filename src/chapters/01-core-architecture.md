@@ -32,6 +32,7 @@
 .codex-project/
   project-config.json    # 项目名、根目录、初始化状态、模板版本、模块清单、记忆文件路径
   project-memory.md      # 轻量索引与最近摘要，不承载完整业务记忆
+  specs/                 # 中高风险任务的阶段产物，按功能或变更主题分目录保存
   memory/
     static-memory.md     # 技术栈、编码规范、验证命令、公共约束、开发环境
     module-map.md        # 模块职责地图：类型、职责、边界、依赖关系
@@ -40,3 +41,5 @@
 ```
 
 AI 不主动提交这些文件，不主动修改 `.gitignore`；用户明确要求纳入版本管理时才协助处理。记忆内容不得保存密码、token、账号、生产敏感地址或隐私数据。
+
+`specs/` 是任务阶段产物目录，不是长期记忆库。中高风险任务或用户明确要求按规格化流程推进时，可在 `.codex-project/specs/<日期-主题>/` 下生成 `spec.md`、`plan.md`、`tasks.md`、`verification.md` 和 `convergence.md`。这些文件记录本次需求、方案、执行清单、验证证据和规格收敛结果；只有最终确认且长期有效的事实才分流沉淀到 `memory/`。

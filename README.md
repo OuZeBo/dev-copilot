@@ -5,7 +5,7 @@
 ## 内容
 
 - `skills/dev-copilot/`：主技能（全局研发调度，版本见 `src/frontmatter.yaml`）
-- `skills/` 其余目录：dev-copilot 调度所需的依赖子技能副本（含传递依赖 `grilling`），随插件一并安装，避免调度时缺失
+- `skills/` 其余目录：dev-copilot 保留的少量强流程依赖副本；需求澄清、领域建模、连续追问、代码评审和分支收尾已内化到主规则
 
 ## 安装
 

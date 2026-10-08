@@ -7,7 +7,7 @@
 - `src/frontmatter.yaml` — SKILL.md 元数据唯一来源（name/version/dependencies 等）
 - `src/chapters/` — 运行时章节源文件；`00-positioning.md` 为架构定位共享段
 - `src/template-only/` — 只进模板不进 SKILL.md 的章节（版本定位、验收规则）
-- `skills/` — 分发单元：`dev-copilot/` 为构建产物加配置，其余为依赖子技能副本（含传递依赖 `grilling`）
+- `skills/` — 分发单元：`dev-copilot/` 为构建产物加配置，其余为 frontmatter 声明的少量强流程依赖副本
 - `scripts/build.mjs` — 由 src 组装 `skills/dev-copilot/SKILL.md` 与根目录版本模板文件
 - `scripts/validate.mjs` — 产物验收（必备规则、元数据唯一性、项目中立、编号连续、依赖完整性）
 - `scripts/install.mjs` — 把 skills/ 平铺部署到目标技能目录（默认 `~/.codex/skills`）
